@@ -44,7 +44,7 @@
             if(is_jwt_valid($jeton,'supersecretdelamortquitue')){
                 deliver_response("200","Jeton valide");
             } else {
-                deliver_response("400","Jeton expiré ou invalide");
+                deliver_response("418","Jeton expiré ou invalide");
             }
             break;
     }
