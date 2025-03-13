@@ -23,7 +23,7 @@
                 if(password_verify($mdp,getPassword($login))){
                     // Création du JWT avec les informations nécessaires
                     $headers = array('alg'=>'HS256', 'typ'=>'JWT');
-                    $payload = array('username'=>$login,'exp'=>(time()+120));
+                    $payload = array('username'=>$login,'exp'=>(time()+1800));
                     $jwt = generate_jwt($headers,$payload,'supersecretdelamortquitue');
                     // Envoi de la réponse avec le JWT
                     deliver_response(200,"Connexion établie",$jwt);
