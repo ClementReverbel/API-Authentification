@@ -26,15 +26,15 @@
                     $payload = array('username'=>$login,'exp'=>(time()+120));
                     $jwt = generate_jwt($headers,$payload,'supersecretdelamortquitue');
                     // Envoi de la réponse avec le JWT
-                    deliver_response("200","Connexion établie",$jwt);
+                    deliver_response(200,"Connexion établie",$jwt);
                         
                 } else {
                     // Erreur si le mot de passe est incorrect
-                    deliver_response("401","Invalid password");
+                    deliver_response(401,"Invalid password");
                 }
             } else {
                 // Erreur si l'utilisateur n'existe pas
-                deliver_response("400","Invalid user");
+                deliver_response(400,"Invalid user");
             }
             break;
         case "GET":
@@ -42,9 +42,9 @@
             $jeton = get_bearer_token();
             // Vérification de la validité du JWT
             if(is_jwt_valid($jeton,'supersecretdelamortquitue')){
-                deliver_response("200","Jeton valide");
+                deliver_response(200,"Jeton valide");
             } else {
-                deliver_response("418","Jeton expiré ou invalide");
+                deliver_response(418,"Jeton expiré ou invalide");
             }
             break;
     }
