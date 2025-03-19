@@ -17,24 +17,34 @@
             $login = $data['login'];
             $mdp = $data['password'];
 
-            // Vérification si l'utilisateur existe
-            if(userExist($login)){
-                // Vérification du mot de passe
-                if(password_verify($mdp,getPassword($login))){
-                    // Création du JWT avec les informations nécessaires
-                    $headers = array('alg'=>'HS256', 'typ'=>'JWT');
-                    $payload = array('username'=>$login,'exp'=>(time()+1800));
-                    $jwt = generate_jwt($headers,$payload,'supersecretdelamortquitue');
-                    // Envoi de la réponse avec le JWT
-                    deliver_response(200,"Connexion établie",$jwt);
-                        
-                } else {
-                    // Erreur si le mot de passe est incorrect
-                    deliver_response(401,"Invalid password");
-                }
+            //Vérification de si le login a été rentré sinon, envoi d'erreur personnalisé
+            if (!isset($login)){
+                deliver_response(400,"Un login doit être spécifié");
             } else {
-                // Erreur si l'utilisateur n'existe pas
-                deliver_response(400,"Invalid user");
+                //Vérification de si le mot de passe a été rentré sinon, envoi d'erreur personnalisé
+                if (!isset($mdp)){
+                    deliver_response(400,"Un mot de passe doit être spécifié");
+                } else {
+                    // Vérification si l'utilisateur existe
+                    if(userExist($login)){
+                        // Vérification du mot de passe
+                        if(password_verify($mdp,getPassword($login))){
+                            // Création du JWT avec les informations nécessaires
+                            $headers = array('alg'=>'HS256', 'typ'=>'JWT');
+                            $payload = array('username'=>$login,'exp'=>(time()+1800));
+                            $jwt = generate_jwt($headers,$payload,'supersecretdelamortquitue');
+                            // Envoi de la réponse avec le JWT
+                            deliver_response(200,"Connexion établie",$jwt);
+                                
+                        } else {
+                            // Erreur si le mot de passe est incorrect
+                            deliver_response(401,"Invalid password");
+                        }
+                    } else {
+                        // Erreur si l'utilisateur n'existe pas
+                        deliver_response(400,"Invalid user");
+                    }
+                }
             }
             break;
         case "GET":
