@@ -12,10 +12,3 @@ Cette API permet la gestion de l'authentification pour le projet **API-VolleyTra
 - **POST** `https://authapi.alwaysdata.net/authapi.php` → Vérifie la validité d’un token JWT.
 
 Toutes les autres requêtes sont traitées mais non implémentées, et renvoient une **erreur utilisateur** plutôt qu’une erreur serveur.
-
-## 📦 Installation
-
-1. **Cloner le dépôt** :
-   ```sh
-   git clone https://github.com/votre-repo/API-Authentification.git
-   cd API-Authentification
