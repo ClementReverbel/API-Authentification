@@ -47,6 +47,9 @@
                 deliver_response(418,"Jeton expiré ou invalide");
             }
             break;
+        default:
+            deliver_response(405,"Méthode non reconnue (L'authentification ne gère que GET et POST)");
+            break;
     }
 
     /**
