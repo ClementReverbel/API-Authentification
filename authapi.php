@@ -60,6 +60,10 @@
                 deliver_response(418,"Jeton expiré ou invalide");
             }
             break;
+        //Methode a implémenter pour les CORS
+        case "OPTIONS":
+            deliver_response(200,"Prerequest validée");
+            break;
         default:
             deliver_response(405,"Méthode non reconnue (L'authentification ne gère que GET et POST)");
             break;
