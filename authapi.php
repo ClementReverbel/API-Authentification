@@ -56,7 +56,7 @@
             } else {
                 //Ceci est évidemment une blague, nous avons trouvé le code 418 en lisant la documentation
                 //Nous avons voulu l'implémenter dans un endroit où l'on pourrait le voir
-                //Le vrai code est 498 !
+                //Le vrai code est 401 !
                 deliver_response(418,"Jeton expiré ou invalide");
             }
             break;
